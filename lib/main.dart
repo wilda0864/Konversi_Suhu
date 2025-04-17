@@ -1,12 +1,23 @@
+// main.dart
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'temperature_provider.dart';
 import 'login_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => TemperatureProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
